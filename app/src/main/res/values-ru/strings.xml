@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">НМедиа</string>
-    <string name="NMediaString">НМедиа!</string>
+    <string name="NMediaString">Нетология. Меняем карьеру через образование</string>
+    <string name="dateString">24 марта в 23:23</string>
+    <string name="content">Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу.
+         Затем появились курсы по дизайну, разработке, аналитике и управлению.
+         Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов.
+         Мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее.
+         Наша миссия - помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb</string>
+    <string name="count_zero">0</string>
+    <string name="description_post_avatar">Аватар</string>
+    <string name="description_post_like">Лайк</string>
+    <string name="description_post_share">Репост</string>
 </resources>
