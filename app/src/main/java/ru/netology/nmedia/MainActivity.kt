@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
             if (post.likedByMe) {
                 like?.setImageResource(R.drawable.ic_liked_24)
             }
-            countLike?.text = post.likes.toString()
-            countShare?.text = post.shares.toString()
+            countLike?.text = formatOut(post.likes)
+            countShare?.text = formatOut(post.shares)
 
             like?.setOnClickListener {
                 post.likedByMe = !post.likedByMe
@@ -65,25 +65,30 @@ class MainActivity : AppCompatActivity() {
                 return (count / 1000).toString() + "K"
             }
             in 1100..9999 -> {
-                return "%.1f".format(count / 1000.0).replace(",", ".") + "K"
+                return "%.1f".format(count / 1000.0).replace(",", ".")
+                        .replace(".0","") + "K"
+
             }
             in 10000..10099 -> {
                 return (count / 1000).toString() + "K"
             }
             in 10100..99999 -> {
-                return "%.1f".format(count / 10000.0).replace(",", ".") + "K"
+                return "%.1f".format(count / 1000.0).replace(",", ".")
+                        .replace(".0","") + "K"
             }
             in 100000..100999 -> {
-                return (count / 100000).toString() + "K"
+                return (count / 1000).toString() + "K"
             }
             in 110000..999999 -> {
-                return "%.1f".format(count / 100000.0).replace(",", ".") + "K"
+                return "%.1f".format(count / 1000.0).replace(",", ".")
+                        .replace(".0","") + "K"
             }
             in 1000000..1099999 -> {
                 return (count / 1000000).toString() + "M"
             }
             in 1100000..9999999 -> {
-                return "%.1f".format(count / 1000000.0).replace(",", ".") + "M"
+                return "%.1f".format(count / 1000000.0).replace(",", ".")
+                        .replace(".0","") + "M"
             }
             else -> "error"
         }
