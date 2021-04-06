@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
@@ -65,30 +67,25 @@ class MainActivity : AppCompatActivity() {
                 return (count / 1000).toString() + "K"
             }
             in 1100..9999 -> {
-                return "%.1f".format(count / 1000.0).replace(",", ".")
-                        .replace(".0","") + "K"
-
+                return BigDecimal(count / 1000).setScale(1, RoundingMode.HALF_EVEN).toString() + "K"
             }
             in 10000..10099 -> {
                 return (count / 1000).toString() + "K"
             }
             in 10100..99999 -> {
-                return "%.1f".format(count / 1000.0).replace(",", ".")
-                        .replace(".0","") + "K"
+                return BigDecimal(count / 1000).setScale(1, RoundingMode.HALF_EVEN).toString() + "K"
             }
             in 100000..100999 -> {
                 return (count / 1000).toString() + "K"
             }
             in 110000..999999 -> {
-                return "%.1f".format(count / 1000.0).replace(",", ".")
-                        .replace(".0","") + "K"
+                return BigDecimal(count / 1000).setScale(1, RoundingMode.HALF_EVEN).toString() + "K"
             }
             in 1000000..1099999 -> {
                 return (count / 1000000).toString() + "M"
             }
             in 1100000..9999999 -> {
-                return "%.1f".format(count / 1000000.0).replace(",", ".")
-                        .replace(".0","") + "M"
+                return BigDecimal(count / 1000).setScale(1, RoundingMode.HALF_EVEN).toString() + "M"
             }
             else -> "error"
         }
