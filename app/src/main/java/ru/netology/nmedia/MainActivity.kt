@@ -23,14 +23,6 @@ class MainActivity : AppCompatActivity() {
                 countLike.text = formatOut(post.likes)
                 countShare.text = formatOut(post.shares)
                 countView.text = formatOut(post.views)
-                if (post.likedByMe) {
-                    post.likes++
-                    countLike.text = formatOut(post.likes)
-                } else {
-                    post.likes--
-                    countLike.text = formatOut(post.likes)
-                }
-
                 like.setImageResource(
                         if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like
                 )
