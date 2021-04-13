@@ -16,7 +16,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
         published = "24 марта в 23:23",
         likedByMe = false,
         likes = 2099,
+        countLikes = "2099",
         shares = 1949,
+        countShares = "1949",
         views = 3000
     )
     private val data = MutableLiveData(post)
@@ -25,10 +27,19 @@ class PostRepositoryInMemoryImpl : PostRepository {
     override fun like() {
         post = post.copy(likedByMe = !post.likedByMe)
         data.value = post
+        if (post.likedByMe) {
+            post.likes++
+            post.countLikes = post.likes.toString()
+        } else {
+            post.likes--
+            post.countLikes = post.likes.toString()
+        }
     }
     override fun share() {
         post = post.copy()
         data.value = post
+        post.shares++
+        post.countShares = post.shares.toString()
     }
 
 
