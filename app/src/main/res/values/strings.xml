@@ -12,4 +12,7 @@
     <string name="description_post_avatar">Avatar</string>
     <string name="description_post_like">Like</string>
     <string name="description_post_share">Share</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_remove">Remove</string>
+    <string name="post_text">Post text</string>
 </resources>
