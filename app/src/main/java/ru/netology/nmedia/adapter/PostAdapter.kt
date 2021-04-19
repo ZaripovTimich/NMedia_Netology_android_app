@@ -48,20 +48,20 @@ class PostViewHolder(
             )
 
             like.setOnClickListener {
-                if (post.likedByMe) {
+                if (!post.likedByMe) {
                     post.likes++
-                    post.countLikes = post.likes.toString()
                 } else {
                     post.likes--
-                    post.countLikes = post.likes.toString()
                 }
                 onLikeListener(post)
+                countLike.text = formatOut(post.likes)
             }
 
             share.setOnClickListener {
-                onShareListener(post)
+
                 post.shares++
-                post.countShares = post.shares.toString()
+                onShareListener(post)
+                countShare.text = formatOut(post.shares)
             }
         }
     }

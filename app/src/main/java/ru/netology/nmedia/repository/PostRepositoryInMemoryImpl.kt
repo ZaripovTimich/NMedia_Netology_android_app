@@ -17,9 +17,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
                     published = "24 марта в 23:23",
                     likedByMe = false,
                     likes = 2099,
-                    countLikes = "2099",
-                    shares = 1949,
-                    countShares = "1949",
+//                    countLikes = "2099",
+                    shares = 550,
+//                    countShares = "1949",
                     views = 3000
             ),
             Post(
@@ -32,10 +32,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
                             "         Наша миссия - помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
                     published = "25 марта в 01:15",
                     likedByMe = false,
-                    likes = 2099,
-                    countLikes = "2099",
-                    shares = 1949,
-                    countShares = "1949",
+                    likes = 450,
+//                    countLikes = "2099",
+                    shares = 20,
+//                    countShares = "1949",
                     views = 3000
             ),
             Post(
@@ -48,10 +48,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
                             "         Наша миссия - помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
                     published = "25 марта в 10:00",
                     likedByMe = false,
-                    likes = 2099,
-                    countLikes = "2099",
-                    shares = 1949,
-                    countShares = "1949",
+                    likes = 1100,
+//                    countLikes = "2099",
+                    shares = 1000,
+//                    countShares = "1949",
                     views = 3000
             ),
             Post(
@@ -64,10 +64,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
                             "         Наша миссия - помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
                     published = "25 марта в 12:50",
                     likedByMe = false,
-                    likes = 2099,
-                    countLikes = "2099",
-                    shares = 1949,
-                    countShares = "1949",
+                    likes = 100,
+//                    countLikes = "2099",
+                    shares = 32,
+//                    countShares = "1949",
                     views = 3000
             ),
             Post(
@@ -81,9 +81,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
                     published = "25 марта в 21:13",
                     likedByMe = false,
                     likes = 2099,
-                    countLikes = "2099",
-                    shares = 1949,
-                    countShares = "1949",
+//                    countLikes = "2099",
+                    shares = 33,
+//                    countShares = "1949",
                     views = 3000
             ),
 
@@ -95,23 +95,15 @@ class PostRepositoryInMemoryImpl : PostRepository {
         posts = posts.map {
             if (it.id != id) it else it.copy(likedByMe = !it.likedByMe)
         }
-        data.value = posts
 
-        /*if (posts.likedByMe) {
-            posts.likes++
-            posts.countLikes = posts.likes.toString()
-        } else {
-            posts.likes--
-            posts.countLikes = posts.likes.toString()
-        }*/
+        data.value = posts
     }
 
     override fun shareById(id: Long) {
         posts = posts.map {
             if (it.id != id) it else it.copy()
+
         }
         data.value = posts
-        /*post.shares++
-        post.countShares = post.shares.toString()*/
     }
 }
