@@ -1,6 +1,7 @@
 package ru.netology.nmedia
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onEdit(post: Post) {
+                binding.cancel.visibility = View.VISIBLE
                 viewModel.edit(post)
             }
 
@@ -54,9 +56,9 @@ class MainActivity : AppCompatActivity() {
             with(binding.content) {
                 if (text.isNullOrBlank()) {
                     Toast.makeText(
-                        this@MainActivity,
-                        "Content can't be empty",
-                        Toast.LENGTH_SHORT
+                            this@MainActivity,
+                            "Content can't be empty",
+                            Toast.LENGTH_SHORT
                     ).show()
                     return@setOnClickListener
                 }
@@ -69,5 +71,18 @@ class MainActivity : AppCompatActivity() {
                 AndroidUtils.hideKeyboard(this)
             }
         }
+        binding.content.setOnFocusChangeListener { _, hasFocus ->
+            binding.cancel.visibility = if (hasFocus) View.VISIBLE else View.INVISIBLE
+        }
+
+        binding.cancel.setOnClickListener {
+            with(binding.content) {
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeyboard(this)
+
+            }
+        }
+        binding.cancel.visibility = View.INVISIBLE
     }
 }
