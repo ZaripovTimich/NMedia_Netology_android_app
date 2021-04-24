@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                 AndroidUtils.hideKeyboard(this)
             }
         }
+
         binding.content.setOnFocusChangeListener { _, hasFocus ->
             binding.cancel.visibility = if (hasFocus) View.VISIBLE else View.INVISIBLE
         }
