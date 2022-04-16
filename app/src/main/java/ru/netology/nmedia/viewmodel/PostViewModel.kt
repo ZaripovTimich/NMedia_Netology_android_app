@@ -3,18 +3,21 @@ package ru.netology.nmedia.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.Post
+import ru.netology.nmedia.activity.EditPostResultContract
 import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.repository.PostRepositoryInMemoryImpl
 
 private val empty = Post(
-        id = 0,
-        content = "",
-        author = "",
-        published = "",
-        likedByMe = false,
-        likes = 0,
-        shares = 0,
-        views = 0
+    id = 0,
+    content = "",
+    videoContent = "",
+    videoPreview = "",
+    author = "",
+    published = "",
+    likedByMe = false,
+    likes = 0,
+    shares = 0,
+    views = 0
 )
 
 class PostViewModel : ViewModel() {

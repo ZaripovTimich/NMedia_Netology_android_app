@@ -1,18 +1,24 @@
 package ru.netology.nmedia.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.netology.nmedia.Post
 import ru.netology.nmedia.R
+import ru.netology.nmedia.activity.MainActivity
 import ru.netology.nmedia.databinding.CardPostBinding
 import java.math.BigDecimal
 import java.math.RoundingMode
+import kotlin.coroutines.coroutineContext
 
 interface OnInteractionListener {
+    fun onPlayVideo(post: Post)
     fun onLike(post: Post) {}
     fun onShare(post: Post) {}
     fun onEdit(post: Post) {}
@@ -20,7 +26,7 @@ interface OnInteractionListener {
 }
 
 class PostAdapter(
-        private val onInteractionListener: OnInteractionListener
+    private val onInteractionListener: OnInteractionListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -35,8 +41,8 @@ class PostAdapter(
 }
 
 class PostViewHolder(
-        private val binding: CardPostBinding,
-        private val onInteractionListener: OnInteractionListener
+    private val binding: CardPostBinding,
+    private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
         binding.apply {
@@ -47,6 +53,19 @@ class PostViewHolder(
             share.text = formatOut(post.shares)
             view.text = formatOut(post.views)
             like.isChecked = post.likedByMe
+
+            if (post.videoContent.isNotEmpty()) {
+                flContainerVideo.visibility = View.VISIBLE
+                Glide
+                    .with(root.context)
+                    .load(Uri.parse(post.videoPreview))
+                    .override(1800, 700)
+                    .into(ivVideoPreview)
+            }
+
+            flContainerVideo.setOnClickListener {
+                onInteractionListener.onPlayVideo(post)
+            }
 
             like.setOnClickListener {
                 onInteractionListener.onLike(post)
@@ -86,25 +105,29 @@ class PostViewHolder(
                 return (count / 1000).toString() + "K"
             }
             in 1100..9999 -> {
-                return BigDecimal(count / 1000.0).setScale(1, RoundingMode.HALF_EVEN).toString() + "K"
+                return BigDecimal(count / 1000.0).setScale(1, RoundingMode.HALF_EVEN)
+                    .toString() + "K"
             }
             in 10000..10099 -> {
                 return (count / 1000).toString() + "K"
             }
             in 10100..99999 -> {
-                return BigDecimal(count / 1000.0).setScale(1, RoundingMode.HALF_EVEN).toString() + "K"
+                return BigDecimal(count / 1000.0).setScale(1, RoundingMode.HALF_EVEN)
+                    .toString() + "K"
             }
             in 100000..100999 -> {
                 return (count / 1000).toString() + "K"
             }
             in 110000..999999 -> {
-                return BigDecimal(count / 1000.0).setScale(1, RoundingMode.HALF_EVEN).toString() + "K"
+                return BigDecimal(count / 1000.0).setScale(1, RoundingMode.HALF_EVEN)
+                    .toString() + "K"
             }
             in 1000000..1099999 -> {
                 return (count / 1000000).toString() + "M"
             }
             in 1100000..9999999 -> {
-                return BigDecimal(count / 1000.0).setScale(1, RoundingMode.HALF_EVEN).toString() + "M"
+                return BigDecimal(count / 1000.0).setScale(1, RoundingMode.HALF_EVEN)
+                    .toString() + "M"
             }
             else -> "error"
         }
