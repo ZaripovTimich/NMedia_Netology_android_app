@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/activity_padding"
-    tools:context=".activity.MainActivity">
+    tools:context=".fragments.FeedFragment">
 
     <ImageView
         android:id="@+id/avatar"
@@ -75,6 +75,7 @@
             android:layout_width="@dimen/dimen_0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_spacing"
+            android:background="?attr/selectableItemBackground"
             android:autoLink="web"
             android:paddingBottom="@dimen/common_spacing"
             android:text="@string/content"

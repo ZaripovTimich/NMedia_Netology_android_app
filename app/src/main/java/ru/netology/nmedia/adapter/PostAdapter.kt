@@ -9,21 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import ru.netology.nmedia.OnInteractionListener
 import ru.netology.nmedia.Post
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.MainActivity
 import ru.netology.nmedia.databinding.CardPostBinding
 import java.math.BigDecimal
 import java.math.RoundingMode
-import kotlin.coroutines.coroutineContext
 
-interface OnInteractionListener {
-    fun onPlayVideo(post: Post)
-    fun onLike(post: Post) {}
-    fun onShare(post: Post) {}
-    fun onEdit(post: Post) {}
-    fun onRemove(post: Post) {}
-}
 
 class PostAdapter(
     private val onInteractionListener: OnInteractionListener
@@ -35,8 +27,7 @@ class PostAdapter(
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        val post = getItem(position)
-        holder.bind(post)
+        holder.bind(getItem(position))
     }
 }
 
@@ -56,8 +47,7 @@ class PostViewHolder(
 
             if (post.videoContent.isNotEmpty()) {
                 flContainerVideo.visibility = View.VISIBLE
-                Glide
-                    .with(root.context)
+                Glide.with(root.context)
                     .load(Uri.parse(post.videoPreview))
                     .override(1800, 700)
                     .into(ivVideoPreview)
@@ -65,6 +55,10 @@ class PostViewHolder(
 
             flContainerVideo.setOnClickListener {
                 onInteractionListener.onPlayVideo(post)
+            }
+
+            content.setOnClickListener {
+                onInteractionListener.onClickPost(post)
             }
 
             like.setOnClickListener {
